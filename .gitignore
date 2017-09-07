@@ -1,0 +1,6 @@
+.build/
+*.sw*
+.DS_Store
+WebService-NextEpisode-*/
+WebService-NextEpisode-*.tar.gz
+
