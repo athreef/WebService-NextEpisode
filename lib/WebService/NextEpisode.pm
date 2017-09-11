@@ -36,11 +36,13 @@ Retrieves air date of next epsiode of $show
 =cut
 
 sub of {
-    my $show = shift =~ s/ /+/gr;
-    my $show_minus = $show =~ s/\+/-/gr;
-    my $page;
-    $page = get("http://next-episode.net/$show_minus")
-         // get("http://next-episode.net/site-search-$show.html");
+    my ($show_minus, $show) = (shift) x 2;
+
+    $show =~ s/ /+/g;
+    $show_minus =~ s/ /-/g;
+
+    my $page = get("http://next-episode.net/$show_minus")
+            // get("http://next-episode.net/site-search-$show.html");
     defined $page or die "Couldn't get it!";
 
     my $tree = HTML::TreeBuilder::XPath->new;
